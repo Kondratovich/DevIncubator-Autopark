@@ -9,10 +9,10 @@ namespace DevIncubatorAutopark
             //1
             VehicleType[] vehicleTypes = new VehicleType[]
             {
-               new VehicleType("Bus", 1.2f),
+               new VehicleType("Bus", 1.2d),
                new VehicleType("Car"),
-               new VehicleType("Rink", 1.5f),
-               new VehicleType("Tractor", 1.2f)
+               new VehicleType("Rink", 1.5d),
+               new VehicleType("Tractor", 1.2d)
             };
 
             //2
@@ -22,7 +22,7 @@ namespace DevIncubatorAutopark
             }
 
             //3
-            vehicleTypes[^1].TaxCoefficient = 1.3f;
+            vehicleTypes[^1].TaxCoefficient = 1.3d;
 
             //4
             Console.WriteLine($"Max TaxCoefficient = {GetMaxTaxCoefficient(vehicleTypes)}");
@@ -31,8 +31,8 @@ namespace DevIncubatorAutopark
             Console.WriteLine($"Average TaxCoefficient = {GetAverageTaxCoefficient(vehicleTypes)}");
 
             //6
-            float maxTaxCoefficient = 0;
-            float sumOfTaxCoefficient = 0;
+            double maxTaxCoefficient = 0;
+            double sumOfTaxCoefficient = 0;
             foreach (var vehicleType in vehicleTypes)
             {
                 vehicleType.Display();
@@ -42,7 +42,7 @@ namespace DevIncubatorAutopark
                 }
                 sumOfTaxCoefficient += vehicleType.TaxCoefficient;
             }
-            float averageTaxCoefficient = sumOfTaxCoefficient / vehicleTypes.Length;
+            double averageTaxCoefficient = sumOfTaxCoefficient / vehicleTypes.Length;
 
             //7
             foreach (var vehicleType in vehicleTypes)
@@ -50,9 +50,9 @@ namespace DevIncubatorAutopark
                 Console.WriteLine(vehicleType);
             }
         }
-        public static float GetMaxTaxCoefficient(IReadOnlyList<VehicleType> vehicleTypes)
+        public static double GetMaxTaxCoefficient(IReadOnlyList<VehicleType> vehicleTypes)
         {
-            float maxTaxCoefficient = 0;
+            double maxTaxCoefficient = 0;
             foreach (var vehicleType in vehicleTypes)
             {
                 if (vehicleType.TaxCoefficient > maxTaxCoefficient)
@@ -63,9 +63,9 @@ namespace DevIncubatorAutopark
             return maxTaxCoefficient;
         }
 
-        public static float GetAverageTaxCoefficient(IReadOnlyList<VehicleType> vehicleTypes)
+        public static double GetAverageTaxCoefficient(IReadOnlyList<VehicleType> vehicleTypes)
         {
-            float sumOfTaxCoefficient = 0;
+            double sumOfTaxCoefficient = 0;
             foreach (var vehicleType in vehicleTypes)
             {
                 sumOfTaxCoefficient += vehicleType.TaxCoefficient;

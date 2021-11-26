@@ -9,8 +9,8 @@ namespace DevIncubatorAutopark
     internal class VehicleType
     {
         public string TypeName { get; set; }
-        public float TaxCoefficient { get; set; }
-        public VehicleType(string carType, float taxCoefficient = 1)
+        public double TaxCoefficient { get; set; }
+        public VehicleType(string carType, double taxCoefficient = 1)
         {
             TypeName = carType;
             TaxCoefficient = taxCoefficient;
