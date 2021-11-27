@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace DevIncubatorAutopark
+﻿namespace DevIncubatorAutopark
 {
     class Program
     {

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DevIncubatorAutopark
+﻿namespace DevIncubatorAutopark
 {
     internal class VehicleType
     {
@@ -15,7 +9,7 @@ namespace DevIncubatorAutopark
             TypeName = carType;
             TaxCoefficient = taxCoefficient;
         }
-        public override string ToString() => $"{TypeName},\"{TaxCoefficient}\"";
+        public override string ToString() => $"{TypeName};{TaxCoefficient}";
 
         public void Display() => Console.WriteLine($"TypeName={TypeName}\nTaxCoefficient={TaxCoefficient}");
     }
