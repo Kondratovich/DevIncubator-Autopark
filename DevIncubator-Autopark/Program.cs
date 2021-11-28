@@ -26,14 +26,14 @@
             };
 
             //3
-            VehicleHelper.ShowAllVehicles(vehicles);
+            VehicleHelper.ShowVehicles(vehicles);
 
             //4
             Array.Sort(vehicles);
 
             //5
             Console.WriteLine();
-            VehicleHelper.ShowAllVehicles(vehicles);
+            VehicleHelper.ShowVehicles(vehicles);
 
             //6
             Console.WriteLine($"Vehicle with max mileage -> {VehicleHelper.GetVehicleWithMaxMileage(vehicles)}\n" +

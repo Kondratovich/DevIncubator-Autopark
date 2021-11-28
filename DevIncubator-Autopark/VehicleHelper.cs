@@ -2,7 +2,7 @@
 {
     internal static class VehicleHelper
     {
-        public static void ShowAllVehicles(IReadOnlyList<Vehicle> vehicles)
+        public static void ShowVehicles(IReadOnlyList<Vehicle> vehicles)
         {
             foreach (var vehicle in vehicles)
             {
