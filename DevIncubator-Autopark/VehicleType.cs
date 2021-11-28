@@ -9,7 +9,7 @@
             TypeName = carType;
             TaxCoefficient = taxCoefficient;
         }
-        public override string ToString() => $"{TypeName};{TaxCoefficient}";
+        public override string ToString() => $"{TypeName},{TaxCoefficient}";
 
         public void Display() => Console.WriteLine($"TypeName={TypeName}\nTaxCoefficient={TaxCoefficient}");
     }

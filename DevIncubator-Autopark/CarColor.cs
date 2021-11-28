@@ -2,12 +2,12 @@
 {
     internal enum CarColor
     {
-		Black,
-		White,
-		Gray,
-		Yellow,
-		Grean,
-		Blue,
-		Red
+        Black,
+        White,
+        Gray,
+        Yellow,
+        Grean,
+        Blue,
+        Red
 	}
 }
