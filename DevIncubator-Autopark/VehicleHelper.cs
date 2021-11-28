@@ -9,6 +9,7 @@
                 Console.WriteLine(vehicle);
             };
         }
+
         public static Vehicle GetVehicleWithMaxMileage(IReadOnlyList<Vehicle> vehicles)
         {
             var maxMileageVehicle = vehicles[0];
@@ -21,6 +22,7 @@
             };
             return maxMileageVehicle;
         }
+
         public static Vehicle GetVehicleWithMinMileage(IReadOnlyList<Vehicle> vehicles)
         {
             var minMileageVehicle = vehicles[0];
