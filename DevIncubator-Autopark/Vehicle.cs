@@ -11,15 +11,17 @@
         public int YearIssue { get; }
         public double TankCapacity { get; }
         public double Weight { get; }
+        public Engine VehicleEngine { get; set; }
         public string LicensePlate { get; set; }
         public double Mileage { get; set; }
         public CarColor Color { get; set; }
 
         public Vehicle() { }
-        public Vehicle(VehicleType vehicleType, string model, string licensePlate, double weight,
+        public Vehicle(VehicleType vehicleType, Engine vehicleEngine, string model, string licensePlate, double weight,
             int yearIssue, double mileage, CarColor color, double tankCapacity)
         {
             VehicleType = vehicleType;
+            VehicleEngine = vehicleEngine;
             Model = model;
             LicensePlate = licensePlate;
             Weight = weight;
@@ -29,11 +31,25 @@
             TankCapacity = tankCapacity;
         }
 
-        public double GetCalcTaxPerMonth() => (Weight * WeightCoefficient) + (VehicleType.TaxCoefficient * TaxCoefficient) + TaxChange;
-
-        public override string ToString() => $"{VehicleType},{Model},{LicensePlate},{Weight}," +
+        public override string ToString() => $"{VehicleType}, {VehicleEngine.TypeName}, {Model},{LicensePlate},{Weight}," +
             $"{YearIssue},{Mileage},{Color},{TankCapacity},{GetCalcTaxPerMonth().ToString("0.00")}";
 
+        public override bool Equals(object obj)
+        {
+            if ((obj == null) || !GetType().Equals(obj.GetType()))
+            {
+                return false;
+            }
+            else
+            {
+                Vehicle vehicle = (Vehicle)obj;
+                return Model == vehicle.Model && VehicleType == vehicle.VehicleType;
+            }
+        }
+
+        public double GetCalcTaxPerMonth()
+            => (Weight * WeightCoefficient) + (VehicleType.TaxCoefficient * VehicleEngine.TaxCoefficient * TaxCoefficient) + TaxChange;
+        
         public int CompareTo(Vehicle other)
         {
             if (other is null)
