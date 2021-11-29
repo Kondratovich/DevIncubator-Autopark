@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace DevIncubatorAutopark
+﻿namespace DevIncubatorAutopark
 {
     class Program
     {
@@ -16,61 +14,30 @@ namespace DevIncubatorAutopark
             };
 
             //2
-            foreach (var vehicleType in vehicleTypes)
+            Vehicle[] vehicles = new Vehicle[]
             {
-                vehicleType.Display();
-            }
+                new Vehicle(vehicleTypes[0], "Volkswagen Crafter", "5427 AX-7", 2022d, 2015, 376000, CarColor.Blue, 200d),
+                new Vehicle(vehicleTypes[0], "Volkswagen Crafter", "6427 AA-7", 2500d, 2014, 227010, CarColor.White, 200d),
+                new Vehicle(vehicleTypes[0], "Electric Bus E321", "6785 BA-7", 12080d, 2019, 20451, CarColor.Grean, 200d),
+                new Vehicle(vehicleTypes[1], "Golf 5", "8682 AX-7", 1200d, 2006, 230451, CarColor.Gray, 90d),
+                new Vehicle(vehicleTypes[1], "Tesla Model S 70D", "E001 AA-7", 2200d, 2019, 10454, CarColor.White, 7000d),
+                new Vehicle(vehicleTypes[2], "Hamm HD 12VV", null, 1200d, 2016, 122, CarColor.Yellow, 90d),
+                new Vehicle(vehicleTypes[3], "МТЗ Беларус-1025.4", "1145 AB-7", 1200d, 2020, 109, CarColor.Red, 440d)
+            };
 
             //3
-            vehicleTypes[^1].TaxCoefficient = 1.3d;
+            VehicleHelper.ShowVehicles(vehicles);
 
             //4
-            Console.WriteLine($"Max TaxCoefficient = {GetMaxTaxCoefficient(vehicleTypes)}");
+            Array.Sort(vehicles);
 
             //5
-            Console.WriteLine($"Average TaxCoefficient = {GetAverageTaxCoefficient(vehicleTypes)}");
+            Console.WriteLine();
+            VehicleHelper.ShowVehicles(vehicles);
 
             //6
-            double maxTaxCoefficient = 0;
-            double sumOfTaxCoefficient = 0;
-            foreach (var vehicleType in vehicleTypes)
-            {
-                vehicleType.Display();
-                if (vehicleType.TaxCoefficient > maxTaxCoefficient)
-                {
-                    maxTaxCoefficient = vehicleType.TaxCoefficient;
-                }
-                sumOfTaxCoefficient += vehicleType.TaxCoefficient;
-            }
-            double averageTaxCoefficient = sumOfTaxCoefficient / vehicleTypes.Length;
-
-            //7
-            foreach (var vehicleType in vehicleTypes)
-            {
-                Console.WriteLine(vehicleType);
-            }
-        }
-        public static double GetMaxTaxCoefficient(IReadOnlyList<VehicleType> vehicleTypes)
-        {
-            double maxTaxCoefficient = 0;
-            foreach (var vehicleType in vehicleTypes)
-            {
-                if (vehicleType.TaxCoefficient > maxTaxCoefficient)
-                {
-                    maxTaxCoefficient = vehicleType.TaxCoefficient;
-                }
-            }
-            return maxTaxCoefficient;
-        }
-
-        public static double GetAverageTaxCoefficient(IReadOnlyList<VehicleType> vehicleTypes)
-        {
-            double sumOfTaxCoefficient = 0;
-            foreach (var vehicleType in vehicleTypes)
-            {
-                sumOfTaxCoefficient += vehicleType.TaxCoefficient;
-            }
-            return sumOfTaxCoefficient / vehicleTypes.Count;
+            Console.WriteLine($"Vehicle with max mileage -> {VehicleHelper.GetVehicleWithMaxMileage(vehicles)}\n" +
+                $"Vehicle with min mileage -> {VehicleHelper.GetVehicleWithMinMileage(vehicles)}");
         }
     }
 }
