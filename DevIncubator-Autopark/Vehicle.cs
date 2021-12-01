@@ -36,20 +36,12 @@
 
         public override bool Equals(object obj)
         {
-            if ((obj == null) || !GetType().Equals(obj.GetType()))
-            {
-                return false;
-            }
-            else
-            {
-                Vehicle vehicle = (Vehicle)obj;
-                return Model == vehicle.Model && VehicleType == vehicle.VehicleType;
-            }
+            return obj is Vehicle secondVehicle && Model == secondVehicle.Model && VehicleType == secondVehicle.VehicleType;
         }
 
         public double GetCalcTaxPerMonth()
             => (Weight * WeightCoefficient) + (VehicleType.TaxCoefficient * VehicleEngine.TaxCoefficient * TaxCoefficient) + TaxChange;
-        
+
         public int CompareTo(Vehicle other)
         {
             if (other is null)
