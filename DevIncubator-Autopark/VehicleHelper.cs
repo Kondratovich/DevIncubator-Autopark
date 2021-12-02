@@ -35,5 +35,19 @@
             };
             return minMileageVehicle;
         }
+
+        public static void PrintEqualsVehicles(IReadOnlyList<Vehicle> vehicles)
+        {
+            for (int i = 0; i < vehicles.Count; i++)
+            {
+                for (int j = i + 1; j < vehicles.Count; j++)
+                {
+                    if (vehicles[i].Equals(vehicles[j]))
+                    {
+                        Console.WriteLine($"Equals:\n{vehicles[i]}\n{vehicles[j]}");
+                    }
+                }
+            }
+        }
     }
 }

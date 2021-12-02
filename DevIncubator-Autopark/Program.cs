@@ -16,28 +16,21 @@
             //2
             Vehicle[] vehicles = new Vehicle[]
             {
-                new Vehicle(vehicleTypes[0], "Volkswagen Crafter", "5427 AX-7", 2022d, 2015, 376000, CarColor.Blue, 200d),
-                new Vehicle(vehicleTypes[0], "Volkswagen Crafter", "6427 AA-7", 2500d, 2014, 227010, CarColor.White, 200d),
-                new Vehicle(vehicleTypes[0], "Electric Bus E321", "6785 BA-7", 12080d, 2019, 20451, CarColor.Grean, 200d),
-                new Vehicle(vehicleTypes[1], "Golf 5", "8682 AX-7", 1200d, 2006, 230451, CarColor.Gray, 90d),
-                new Vehicle(vehicleTypes[1], "Tesla Model S 70D", "E001 AA-7", 2200d, 2019, 10454, CarColor.White, 7000d),
-                new Vehicle(vehicleTypes[2], "Hamm HD 12VV", null, 1200d, 2016, 122, CarColor.Yellow, 90d),
-                new Vehicle(vehicleTypes[3], "МТЗ Беларус-1025.4", "1145 AB-7", 1200d, 2020, 109, CarColor.Red, 440d)
+                new Vehicle(vehicleTypes[0], new GasolineEngine(2d, 8.1d), "Volkswagen Crafter", "5427 AX-7", 2022f, 2015, 376000, CarColor.Blue, 200f),
+                new Vehicle(vehicleTypes[0], new GasolineEngine(2.18d, 8.5d), "Volkswagen Crafter", "6427 AA-7", 2500f, 2014, 227010, CarColor.White, 200f),
+                new Vehicle(vehicleTypes[0], new ElectricalEngine(50d), "Electric Bus E321", "6785 BA-7", 12080f, 2019, 20451, CarColor.Grean, 200f),
+                new Vehicle(vehicleTypes[1], new DieselEngine(1.6d, 7.2d), "Golf 5", "8682 AX-7", 1200f, 2006, 230451, CarColor.Gray, 90f),
+                new Vehicle(vehicleTypes[1], new ElectricalEngine(25d), "Tesla Model S 70D", "E001 AA-7", 2200f, 2019, 10454, CarColor.White, 7000f),
+                new Vehicle(vehicleTypes[2], new DieselEngine(3.2d, 25d), "Hamm HD 12VV", null, 1200f, 2016, 122, CarColor.Yellow, 90f),
+                new Vehicle(vehicleTypes[3], new DieselEngine(4.75d, 20.1d), "МТЗ Беларус-1025.4", "1145 AB-7", 1200f, 2020, 109, CarColor.Red, 440f)
             };
 
             //3
             VehicleHelper.ShowVehicles(vehicles);
 
             //4
-            Array.Sort(vehicles);
-
-            //5
             Console.WriteLine();
-            VehicleHelper.ShowVehicles(vehicles);
-
-            //6
-            Console.WriteLine($"Vehicle with max mileage -> {VehicleHelper.GetVehicleWithMaxMileage(vehicles)}\n" +
-                $"Vehicle with min mileage -> {VehicleHelper.GetVehicleWithMinMileage(vehicles)}");
+            VehicleHelper.PrintEqualsVehicles(vehicles);
         }
     }
 }
