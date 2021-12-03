@@ -11,13 +11,13 @@
         public int YearIssue { get; }
         public double TankCapacity { get; }
         public double Weight { get; }
-        public Engine VehicleEngine { get; set; }
+        public AbstractEngine VehicleEngine { get; set; }
         public string LicensePlate { get; set; }
         public double Mileage { get; set; }
         public CarColor Color { get; set; }
 
         public Vehicle() { }
-        public Vehicle(VehicleType vehicleType, Engine vehicleEngine, string model, string licensePlate, double weight,
+        public Vehicle(VehicleType vehicleType, AbstractEngine vehicleEngine, string model, string licensePlate, double weight,
             int yearIssue, double mileage, CarColor color, double tankCapacity)
         {
             VehicleType = vehicleType;

@@ -1,6 +1,6 @@
 ﻿namespace DevIncubatorAutopark
 {
-    internal class GasolineEngine : CombustionEngine
+    internal class GasolineEngine : AbstractCombustionEngine
     {
         public GasolineEngine(double engineCapacity, double fuelConsumptionPer100km) : base("Gasoline", 1d)
         {
