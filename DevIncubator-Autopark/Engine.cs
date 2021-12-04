@@ -1,14 +1,16 @@
 ﻿namespace DevIncubatorAutopark
 {
-    internal class Engine
+    internal abstract class AbstractEngine
     {
         public string TypeName { get; }
         public double TaxCoefficient { get; }
 
-        public Engine(string typeName, double taxCoefficient)
+        public AbstractEngine(string typeName, double taxCoefficient)
         {
             TypeName = typeName;
             TaxCoefficient = taxCoefficient;
         }
+
+        public abstract double GetMaxKilometers(double fuelTank);
     }
 }

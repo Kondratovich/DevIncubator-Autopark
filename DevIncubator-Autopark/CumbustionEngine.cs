@@ -1,17 +1,17 @@
 ﻿namespace DevIncubatorAutopark
 {
-    internal class CombustionEngine : Engine
+    internal abstract class AbstractCombustionEngine : AbstractEngine
     {
         private const double OneHundredPercent = 100d;
 
         public double EngineCapacity { get; protected set; }
         public double FuelConsumptionPer100km { get; protected set; }
 
-        public CombustionEngine(string typeName, double taxCoefficient) : base(typeName, taxCoefficient)
+        public AbstractCombustionEngine(string typeName, double taxCoefficient) : base(typeName, taxCoefficient)
         {
         }
 
-        public double GetMaxKilometers(double fuelTankCapacity) =>
+        public override double GetMaxKilometers(double fuelTankCapacity) =>
             fuelTankCapacity * OneHundredPercent / FuelConsumptionPer100km;
     }
 }

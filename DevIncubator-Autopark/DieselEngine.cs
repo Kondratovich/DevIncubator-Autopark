@@ -1,6 +1,6 @@
 ﻿namespace DevIncubatorAutopark
 {
-    internal class DieselEngine : CombustionEngine
+    internal class DieselEngine : AbstractCombustionEngine
     {
         public DieselEngine(double engineCapacity, double fuelConsumptionPer100km) : base("Diesel", 1.2d)
         {

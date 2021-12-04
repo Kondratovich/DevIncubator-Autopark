@@ -49,5 +49,18 @@
                 }
             }
         }
+
+        public static Vehicle GetVehicleWithMaxKilometers(IReadOnlyList<Vehicle> vehicles)
+        {
+            Vehicle vehicleWithMaxKilometers = vehicles[0];
+            for (int i = 1; i < vehicles.Count; i++)
+            {
+                if (vehicles[i].VehicleEngine.GetMaxKilometers(vehicles[i].TankCapacity) > vehicleWithMaxKilometers.VehicleEngine.GetMaxKilometers(vehicleWithMaxKilometers.TankCapacity))
+                {
+                    vehicleWithMaxKilometers = vehicles[i];
+                }
+            }
+            return vehicleWithMaxKilometers;
+        }
     }
 }

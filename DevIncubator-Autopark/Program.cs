@@ -29,8 +29,8 @@
             VehicleHelper.ShowVehicles(vehicles);
 
             //4
-            Console.WriteLine();
-            VehicleHelper.PrintEqualsVehicles(vehicles);
+            Console.WriteLine("Vehicle with max kilometers: ");
+            Console.WriteLine(VehicleHelper.GetVehicleWithMaxKilometers(vehicles));
         }
     }
 }
