@@ -2,11 +2,13 @@
 {
     internal class VehicleType
     {
+        public int Id { get; }
         public string TypeName { get; set; }
         public double TaxCoefficient { get; set; }
 
-        public VehicleType(string carType, double taxCoefficient = 1)
+        public VehicleType(int id, string carType, double taxCoefficient = 1)
         {
+            Id = id;
             TypeName = carType;
             TaxCoefficient = taxCoefficient;
         }
