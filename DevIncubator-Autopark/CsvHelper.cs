@@ -4,8 +4,8 @@
     {
         public static List<String> ParseCsvStringToFields(string csvString)
         {
-            string[] splitStrings = csvString.Split(",\"");
-            List<string> fields = new List<string>();
+            var splitStrings = csvString.Split(",\"");
+            var fields = new List<string>();
             if (splitStrings.Length == 0)
             {
                 fields.AddRange(csvString.Split(','));
@@ -31,7 +31,7 @@
 
         public static List<String> ReadCsvStrings(string path)
         {
-            List<String> csvStrings = new List<String>();
+            var csvStrings = new List<String>();
             try
             {
                 using (StreamReader sr = new StreamReader(path))

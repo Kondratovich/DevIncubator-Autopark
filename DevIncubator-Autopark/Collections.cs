@@ -30,9 +30,9 @@
 
         private void CreateRent(IReadOnlyList<string> fields)
         {
-            int vehicleId = int.Parse(fields[0]);
-            DateTime rentTime = DateTime.Parse(fields[1]);
-            double rentPrice = double.Parse(fields[2]);
+            var vehicleId = int.Parse(fields[0]);
+            var rentTime = DateTime.Parse(fields[1]);
+            var rentPrice = double.Parse(fields[2]);
 
             foreach (var vehicle in Vehicles)
             {
@@ -43,9 +43,9 @@
             }
         }
 
-        public List<VehicleType> ParseVehicleTypes(string path)
+        private List<VehicleType> ParseVehicleTypes(string path)
         {
-            List<String> csvStrings = CsvHelper.ReadCsvStrings(path);
+            var csvStrings = CsvHelper.ReadCsvStrings(path);
             foreach (var csvString in csvStrings)
             {
                 VehicleTypes.Add(CreateVehicleType(csvString));
@@ -53,9 +53,9 @@
             return VehicleTypes;
         }
 
-        public List<Vehicle> ParseVehicles(string path)
+        private List<Vehicle> ParseVehicles(string path)
         {
-            List<String> csvStrings = CsvHelper.ReadCsvStrings(path);
+            var csvStrings = CsvHelper.ReadCsvStrings(path);
             foreach (var csvString in csvStrings)
             {
                 Vehicles.Add(CreateVehicle(csvString));
@@ -63,9 +63,9 @@
             return Vehicles;
         }
 
-        public void LoadRents(string path)
+        private void LoadRents(string path)
         {
-            List<String> csvStrings = CsvHelper.ReadCsvStrings(path);
+            var csvStrings = CsvHelper.ReadCsvStrings(path);
             foreach (var csvString in csvStrings)
             {
                 List<String> fields = CsvHelper.ParseCsvStringToFields(csvString);
@@ -73,9 +73,9 @@
             }
         }
 
-        public VehicleType CreateVehicleType(string csvString)
+        private VehicleType CreateVehicleType(string csvString)
         {
-            List<string> fields = CsvHelper.ParseCsvStringToFields(csvString);
+            var fields = CsvHelper.ParseCsvStringToFields(csvString);
 
             var id = int.Parse(fields[0]);
             var carType = fields[1];
@@ -84,9 +84,9 @@
             return new VehicleType(id, carType, taxCoefficient);
         }
 
-        public Vehicle CreateVehicle(string csvString)
+        private Vehicle CreateVehicle(string csvString)
         {
-            List<string> fields = CsvHelper.ParseCsvStringToFields(csvString);
+            var fields = CsvHelper.ParseCsvStringToFields(csvString);
 
             var id = int.Parse(fields[0]);
             var vehicleTypeId = int.Parse(fields[1]);
@@ -130,9 +130,9 @@
             return true;
         }
 
-        public double SumTotalProfit()
+        private double SumTotalProfit()
         {
-            double totalProfit = 0;
+            double totalProfit = 0d;
             foreach (var vehicle in Vehicles)
             {
                 totalProfit += vehicle.GetTotalProfit();

@@ -2,7 +2,7 @@
 {
     class Program
     {
-        private static readonly string CsvFilesPath = @$"..\..\..\FileData\";
+        private static readonly string CsvFilesPath = @$"{Directory.GetCurrentDirectory()}\FileData\";
         public static void Main()
         {
             //1
