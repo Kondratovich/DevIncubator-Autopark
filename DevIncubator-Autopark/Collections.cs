@@ -1,18 +1,29 @@
-﻿namespace DevIncubatorAutopark
+﻿using System.Collections;
+
+namespace DevIncubatorAutopark
 {
     internal class Collections
     {
-        public List<VehicleType> VehicleTypes { get; } = new List<VehicleType>();
-        public List<Vehicle> Vehicles { get; } = new List<Vehicle>();
+        public List<VehicleType> VehicleTypes { get; }
+        public List<Vehicle> Vehicles { get; }
 
         public Collections()
         {
-
+            VehicleTypes = new List<VehicleType>();
+            Vehicles = new List<Vehicle>();
         }
         public Collections(string rentsFileName, string vehiclesFileName, string vehiclesTypesFileName)
         {
-            VehicleTypes = ParseVehicleTypes(vehiclesTypesFileName);
-            Vehicles = ParseVehicles(vehiclesFileName);
+            VehicleTypes = new List<VehicleType>();
+            Vehicles = new List<Vehicle>();
+            foreach (VehicleType vehicleType in ParseVehicleTypes(vehiclesTypesFileName))
+            {
+                VehicleTypes.Add(vehicleType);
+            }
+            foreach (Vehicle vehicle in ParseVehicles(vehiclesFileName))
+            {
+                Vehicles.Add(vehicle);
+            }
             LoadRents(rentsFileName);
         }
 
@@ -43,24 +54,22 @@
             }
         }
 
-        private List<VehicleType> ParseVehicleTypes(string path)
+        private IEnumerable ParseVehicleTypes(string path)
         {
             var csvStrings = CsvHelper.ReadCsvStrings(path);
             foreach (var csvString in csvStrings)
             {
-                VehicleTypes.Add(CreateVehicleType(csvString));
+                yield return CreateVehicleType(csvString);
             }
-            return VehicleTypes;
         }
 
-        private List<Vehicle> ParseVehicles(string path)
+        private IEnumerable ParseVehicles(string path)
         {
             var csvStrings = CsvHelper.ReadCsvStrings(path);
             foreach (var csvString in csvStrings)
             {
-                Vehicles.Add(CreateVehicle(csvString));
+                yield return CreateVehicle(csvString);
             }
-            return Vehicles;
         }
 
         private void LoadRents(string path)
