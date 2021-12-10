@@ -10,24 +10,25 @@
                 $"{CsvFilesPath}rents.csv",
                 $"{CsvFilesPath}vehicles.csv",
                 $"{CsvFilesPath}types.csv");
-            collection.Print();
+            var vehicles = collection.Vehicles;
+            var queue = new MyQueue<Vehicle>();
 
             //2
-            var vehicle = new Vehicle(8, collection.VehicleTypes[1], new GasolineEngine(2.2d, 40d), "Subaru Impreza", "7777 XX-7", 1700d, 2003, 27000, CarColor.Red, 60d);
-            collection.InsertVehicle(-1, vehicle);
+            Console.WriteLine("Очередь в автомойку");
+            foreach (var vehicle in vehicles)
+            {
+                queue.Enqueue(vehicle);
+                Console.WriteLine($"Авто {vehicle.Model} вошло в очередь");
+            }
 
             //3
-            collection.DeleteVehicle(1);
-            collection.DeleteVehicle(4);
-
-            //4
-            collection.Print();
-
-            //5
-            collection.Sort(new VehicleComparer());
-
-            //6
-            collection.Print();
+            Console.WriteLine("Вымытые авто");
+            var sourceQueueLength = queue.Count;
+            for (int i = 0; i < sourceQueueLength; i++)
+            {
+                var vehicle = queue.Dequeue();
+                Console.WriteLine($"Авто {vehicle.Model} вымыто");
+            }
         }
     }
 }
