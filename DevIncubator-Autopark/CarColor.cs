@@ -6,7 +6,7 @@
         White,
         Gray,
         Yellow,
-        Grean,
+        Green,
         Blue,
         Red
 	}

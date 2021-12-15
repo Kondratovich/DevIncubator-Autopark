@@ -6,6 +6,8 @@
         private const double TaxChange = 5d;
         private const double TaxCoefficient = 30d;
 
+        public int Id { get; }
+        public List<Rent> Rents { get; set; } = new List<Rent>();
         public VehicleType VehicleType { get; }
         public string Model { get; }
         public int YearIssue { get; }
@@ -17,9 +19,10 @@
         public CarColor Color { get; set; }
 
         public Vehicle() { }
-        public Vehicle(VehicleType vehicleType, AbstractEngine vehicleEngine, string model, string licensePlate, double weight,
+        public Vehicle(int id, VehicleType vehicleType, AbstractEngine vehicleEngine, string model, string licensePlate, double weight,
             int yearIssue, double mileage, CarColor color, double tankCapacity)
         {
+            Id = id;
             VehicleType = vehicleType;
             VehicleEngine = vehicleEngine;
             Model = model;
@@ -48,5 +51,17 @@
                 throw new ArgumentNullException(nameof(other), "Error, argument cannot be null");
             return GetCalcTaxPerMonth().CompareTo(other.GetCalcTaxPerMonth());
         }
+
+        public double GetTotalIncome()
+        {
+            double totalIncome = 0d;
+            foreach (var rent in Rents)
+            {
+                totalIncome += rent.RentPrice;
+            }
+            return totalIncome;
+        }
+
+        public double GetTotalProfit() => GetTotalIncome() - GetCalcTaxPerMonth();
     }
 }
