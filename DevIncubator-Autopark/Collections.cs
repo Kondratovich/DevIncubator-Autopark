@@ -12,18 +12,11 @@ namespace DevIncubatorAutopark
             VehicleTypes = new List<VehicleType>();
             Vehicles = new List<Vehicle>();
         }
+
         public Collections(string rentsFileName, string vehiclesFileName, string vehiclesTypesFileName)
         {
-            VehicleTypes = new List<VehicleType>();
-            Vehicles = new List<Vehicle>();
-            foreach (VehicleType vehicleType in ParseVehicleTypes(vehiclesTypesFileName))
-            {
-                VehicleTypes.Add(vehicleType);
-            }
-            foreach (Vehicle vehicle in ParseVehicles(vehiclesFileName))
-            {
-                Vehicles.Add(vehicle);
-            }
+            VehicleTypes = ParseVehicleTypes(vehiclesTypesFileName).ToList();
+            Vehicles = ParseVehicles(vehiclesFileName).ToList();
             LoadRents(rentsFileName);
         }
 
@@ -54,7 +47,7 @@ namespace DevIncubatorAutopark
             }
         }
 
-        private IEnumerable ParseVehicleTypes(string path)
+        private IEnumerable<VehicleType> ParseVehicleTypes(string path)
         {
             var csvStrings = CsvHelper.ReadCsvStrings(path);
             foreach (var csvString in csvStrings)
@@ -63,7 +56,7 @@ namespace DevIncubatorAutopark
             }
         }
 
-        private IEnumerable ParseVehicles(string path)
+        private IEnumerable<Vehicle> ParseVehicles(string path)
         {
             var csvStrings = CsvHelper.ReadCsvStrings(path);
             foreach (var csvString in csvStrings)
