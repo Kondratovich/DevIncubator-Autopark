@@ -2,15 +2,14 @@
 {
     internal class MyQueue<T>
     {
-        private const int _defaultSize = 10;
+        private const int DefaultSize = 10;
         private T[] _queueArr;
         private int _length;
-        private int _startIndex;
         private int _endIndex;
 
         public MyQueue()
         {
-            _queueArr = new T[_defaultSize];
+            _queueArr = new T[DefaultSize];
         }
 
         public MyQueue(int length)
@@ -22,7 +21,6 @@
             _queueArr = new T[length];
             _length = length;
             _endIndex = 0;
-            _startIndex = 0;
         }
 
         public MyQueue(IEnumerable<T> queue)
@@ -31,14 +29,14 @@
             {
                 throw new ArgumentNullException();
             }
-            _queueArr = new T[_defaultSize];
+            _queueArr = new T[DefaultSize];
             foreach (var item in queue)
             {
                 Enqueue(item);
             }
         }
 
-        public int Count => _endIndex - _startIndex;
+        public int Count => _endIndex;
 
         public void Resize()
         {
@@ -80,7 +78,6 @@
         {
             Array.Clear(_queueArr, 0, _queueArr.Length);
             _endIndex = 0;
-            _startIndex = 0;
         }
 
         public bool Contains(T element)
@@ -98,11 +95,9 @@
 
         public IEnumerator<T> GetEnumerator()
         {
-            var start = _startIndex;
-            var end = _endIndex;
-            while (start != end)
+            for (int i = 0; i < _endIndex; i++)
             {
-                yield return _queueArr[end++];
+                yield return _queueArr[i];
             }
         }
     }
