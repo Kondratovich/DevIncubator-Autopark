@@ -38,10 +38,7 @@
         {
             var newQueue = new T[length * 2];
 
-            for (int i = 0; i < queueArr.Length; i++)
-            {
-                newQueue[i] = queueArr[i];
-            }
+            Array.Copy(queueArr, newQueue, queueArr.Length);
 
             queueArr = newQueue;
             length *= 2;
