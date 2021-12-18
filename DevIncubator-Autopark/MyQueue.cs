@@ -36,7 +36,7 @@
             }
         }
 
-        public int Count => _endIndex;
+        public int Count => _endIndex++;
 
         public void Resize()
         {
@@ -61,7 +61,7 @@
 
         public T Dequeue()
         {
-            if (Count != 0)
+            if (_endIndex != 0)
             {
                 var dequeueItem = _queueArr[0];
                 var newQueue = new T[_queueArr.Length - 1];
@@ -95,7 +95,7 @@
 
         public IEnumerator<T> GetEnumerator()
         {
-            for (int i = 0; i < _endIndex; i++)
+            for (int i = 0; i <= _endIndex; i++)
             {
                 yield return _queueArr[i];
             }
