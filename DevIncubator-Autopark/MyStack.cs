@@ -1,10 +1,12 @@
-﻿namespace DevIncubatorAutopark
+﻿using System.Collections;
+
+namespace DevIncubatorAutopark
 {
-    public class MyStack<T> : IEnumerable<T>
+    public class MyStack<T>
     {
         private T[] _array;
-
         private const int DefaultCapacity = 10;
+        public int Count { get; private set; }
 
         public MyStack()
         {
@@ -31,8 +33,6 @@
                 i++;
             }
         }
-
-        public int Count { get; private set; }
 
         public void Clear()
         {
