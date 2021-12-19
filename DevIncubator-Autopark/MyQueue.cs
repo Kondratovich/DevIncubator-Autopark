@@ -36,7 +36,7 @@
             }
         }
 
-        public int Count => _endIndex++;
+        public int Count => _endIndex + 1;
 
         public void Resize()
         {
