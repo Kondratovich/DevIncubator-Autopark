@@ -6,6 +6,7 @@ namespace DevIncubatorAutopark
     {
         private T[] _array;
         private const int DefaultCapacity = 10;
+        private const int ResizeValue = 2;
         public int Count { get; private set; }
 
         public MyStack()
@@ -26,11 +27,9 @@ namespace DevIncubatorAutopark
             if (collection is null)
                 throw new ArgumentNullException(nameof(collection), "Error, collection can`t be null");
 
-            var i = 0;
             foreach (var element in collection)
             {
-                _array[i] = element;
-                i++;
+                Push(element);
             }
         }
 
@@ -55,12 +54,24 @@ namespace DevIncubatorAutopark
         {
             if (Count == _array.Length)
             {
-                var newArray = new T[_array.Length + 1];
+                var newArray = new T[_array.Length * ResizeValue];
                 Array.Copy(_array, newArray, Count);
                 _array = newArray;
             }
             _array[Count] = item;
             Count += 1;
+        }
+
+        public T Peek()
+        {
+            if (Count != 0)
+            {
+                return _array[Count - 1];
+            }
+            else
+            {
+                throw new InvalidOperationException("Can't peek item, stack is empty ");
+            }
         }
 
         public IEnumerator<T> GetEnumerator() => (IEnumerator<T>)_array.GetEnumerator();
