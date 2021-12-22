@@ -64,14 +64,10 @@ namespace DevIncubatorAutopark
 
         public T Peek()
         {
-            if (Count != 0)
-            {
-                return _array[Count - 1];
-            }
-            else
-            {
+            if (Count == 0)
                 throw new InvalidOperationException("Can't peek item, stack is empty ");
-            }
+
+            return _array[Count - 1];
         }
 
         public IEnumerator<T> GetEnumerator() => (IEnumerator<T>)_array.GetEnumerator();
