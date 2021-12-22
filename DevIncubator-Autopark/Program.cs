@@ -11,23 +11,22 @@
                 $"{CsvFilesPath}vehicles.csv",
                 $"{CsvFilesPath}types.csv");
             var vehicles = collection.Vehicles;
-            var queue = new MyQueue<Vehicle>();
+            var stack = new MyStack<Vehicle>(vehicles.Count);
 
             //2
-            Console.WriteLine("Очередь в автомойку");
+            Console.WriteLine("Въезд в гараж");
             foreach (var vehicle in vehicles)
             {
-                queue.Enqueue(vehicle);
-                Console.WriteLine($"Авто {vehicle.Model} вошло в очередь");
+                stack.Push(vehicle);
+                Console.WriteLine($"{vehicle.Model} заехал в гараж.");
             }
 
             //3
-            Console.WriteLine("Вымытые авто");
-            var sourceQueueLength = queue.Count;
-            for (int i = 0; i < sourceQueueLength; i++)
+            Console.WriteLine("Выезд из гаража");
+            while (stack.Count > 0)
             {
-                var vehicle = queue.Dequeue();
-                Console.WriteLine($"Авто {vehicle.Model} вымыто");
+                var vehicle = stack.Pop();
+                Console.WriteLine($"{vehicle.Model} выехал из гаража.");
             }
         }
     }
