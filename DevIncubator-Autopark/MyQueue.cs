@@ -3,69 +3,72 @@
     internal class MyQueue<T>
     {
         private const int DefaultSize = 10;
-        private T[] queueArr;
-        private int length;
-        private int startIndex;
-        private int endIndex;
+        private T[] _queueArr;
+        private int _length;
+        private int _endIndex;
 
         public MyQueue()
         {
-            queueArr = new T[DefaultSize];
+            _queueArr = new T[DefaultSize];
         }
 
         public MyQueue(int length)
         {
             if (length < 0)
             {
-                throw new ArgumentException("Размер очереди не может быть меньше 0", nameof(length));
+                throw new ArgumentOutOfRangeException("Queue size cannot be less than 0", nameof(length));
             }
-            queueArr = new T[length];
-            this.length = length;
-            endIndex = 0;
-            startIndex = 0;
+            _queueArr = new T[length];
+            _length = length;
+            _endIndex = 0;
         }
 
-        public MyQueue(T[] queue)
+        public MyQueue(IEnumerable<T> queue)
         {
-            queueArr = queue ?? throw new ArgumentNullException(nameof(queue), "Исходные элементы очереди не могут быть null");
-            length = queueArr.Length;
-            endIndex = queueArr.Length - 1;
+            if (queue is null)
+            {
+                throw new ArgumentNullException();
+            }
+            _queueArr = new T[DefaultSize];
+            foreach (var item in queue)
+            {
+                Enqueue(item);
+            }
         }
 
-        public int Count => endIndex - startIndex;
+        public int Count => _endIndex + 1;
 
         public void Resize()
         {
-            var newQueue = new T[length * 2];
+            var newQueue = new T[_length * 2];
 
-            for (int i = 0; i < queueArr.Length; i++)
-            {
-                newQueue[i] = queueArr[i];
-            }
+            Array.Copy(_queueArr, newQueue, _queueArr.Length);
 
-            queueArr = newQueue;
-            length *= 2;
+            _queueArr = newQueue;
+            _length *= 2;
         }
 
         public void Enqueue(T element)
         {
-            if (length - 1 == endIndex)
+            if (_length - 1 == _endIndex)
             {
                 Resize();
             }
 
-            queueArr.SetValue(element, endIndex);
-            endIndex++;
+            _queueArr.SetValue(element, _endIndex);
+            _endIndex++;
         }
 
         public T Dequeue()
         {
-            if (startIndex != endIndex)
+            if (_endIndex != 0)
             {
-                var elementToDequeue = queueArr[startIndex];
-                startIndex++;
+                var dequeueItem = _queueArr[0];
+                var newQueue = new T[_queueArr.Length - 1];
+                Array.Copy(_queueArr, 1, newQueue, 0, --_endIndex);
+                _queueArr = newQueue;
 
-                return elementToDequeue;
+                return dequeueItem;
             }
 
             return default;
@@ -73,17 +76,15 @@
 
         public void Clear()
         {
-            if (length <= 0)
-            {
-                Array.Clear(queueArr, 0, queueArr.Length);
-            }
+            Array.Clear(_queueArr, 0, _queueArr.Length);
+            _endIndex = 0;
         }
 
         public bool Contains(T element)
         {
-            for (int i = 0; i < queueArr.Length; i++)
+            for (int i = 0; i < _queueArr.Length; i++)
             {
-                if (queueArr[i].Equals(element))
+                if (_queueArr[i].Equals(element))
                 {
                     return true;
                 }
@@ -94,11 +95,9 @@
 
         public IEnumerator<T> GetEnumerator()
         {
-            var start = startIndex;
-            var end = endIndex;
-            while (start != end)
+            for (int i = 0; i <= _endIndex; i++)
             {
-                yield return queueArr[end++];
+                yield return _queueArr[i];
             }
         }
     }

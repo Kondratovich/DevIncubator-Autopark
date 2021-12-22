@@ -6,6 +6,7 @@
         public double RentPrice { get; }
 
         public Rent() { }
+
         public Rent(DateTime rentDate, double rentPrice)
         {
             RentDate = rentDate;
